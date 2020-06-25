@@ -10,7 +10,8 @@ mongoose.connect("mongodb://localhost/yelp_camp");
 
 const campgroundSchema = new mongoose.Schema({
     name: String,
-    image: String
+    image: String,
+    description: String
 });
 
 const Campground = mongoose.model("Campground", campgroundSchema);
@@ -19,7 +20,8 @@ const Campground = mongoose.model("Campground", campgroundSchema);
     
 //     {
 //         name: "Granite Hill", 
-//         image: "https://images.pexels.com/photos/776117/pexels-photo-776117.jpeg?auto=compress&cs=tinysrgb&h=350"
+//         image: "https://images.pexels.com/photos/776117/pexels-photo-776117.jpeg?auto=compress&cs=tinysrgb&h=350",
+//         description: "This is a huge granite hill, no bathrooms. No Water. Beautiful granite!"
 
 //     }, (err, campground) => {
 //         if (err){
@@ -43,7 +45,7 @@ app.get("/campgrounds", (req, res) => {
         if (err) {
             console.log(err);
         } else {
-            res.render("campgrounds", {campgrounds: campgrounds});
+            res.render("index", {campgrounds: campgrounds});
         }
     })
 });
@@ -52,7 +54,8 @@ app.post("/campgrounds", (req, res) => {
     // Get data from form and save to campgrounds array
     let name = req.body.name;
     let image = req.body.image;
-    let newCampgrounds = {name:name, image:image}
+    let description = req.body.description;
+    let newCampgrounds = {name:name, image:image, description:description}
     // Create a new Campground and save to DB
     Campground.create(newCampgrounds, (err, newlyCreated) => {
         if (err){
@@ -65,6 +68,18 @@ app.post("/campgrounds", (req, res) => {
 // NEW - show form to create new campground 
 app.get("/campgrounds/new", (req, res) => {
     res.render("new")
+});
+//SHOW - show more info about one campground
+app.get("/campgrounds/:id", (req, res) => {
+    // find the campground with provided id
+    Campground.findById(req.params.id, (err, foundCampground) => {
+        if (err) {
+            console.log(err);
+        } else {
+            // render show tamplete with that campground
+            res.render("show", {campground: foundCampground});
+        }
+    });
 });
 
 app.listen(3000, () => {
