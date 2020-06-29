@@ -10,6 +10,7 @@ const app = express();
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
 mongoose.connect("mongodb://localhost/blog_app");
+mongoose.set('useFindAndModify', false);
 
 // APP CONFIG
 app.set("view engine", "ejs");
@@ -79,6 +80,7 @@ app.get("/blogs/:id/edit", (req, res) => {
 });
 // UPDATE ROUTE
 app.put("/blogs/:id", (req, res) => {
+    req.body.blog.body = req.sanitize(req.body.blog.body);
     Blog.findByIdAndUpdate(req.params.id, req.body.blog, (err, updatedBlog) => {
         if (err) {
             res.redirect("/blogs");
