@@ -37,3 +37,8 @@ label {
     max-height: 850px;
     object-fit: cover;
 }
+
+.navbar.scrolled {
+    background-color: rgba(235, 155, 52, 0.8);
+    transition: 500ms;
+}
