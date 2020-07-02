@@ -1,0 +1,29 @@
+<%- include("partials/header") %>
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>Collection of Awesome Animals</h1>
+    </div>
+
+    <div class="container pb-4">
+        <div class="row">
+             <% animals.forEach((animal) => { %>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="card bg-light w-80 p-3">
+                            <img class="rounded card-img-top" src="<%= animal.image %>">
+                            <span id="date"><%= animal.created.toDateString() %></span>
+                            <div class="card_body">
+                                <h2 class="card-title"> <%= animal.title %> </h2>                     
+                                <p class="card-text"><%- animal.body.substring(0, 200) %> ...</p>
+                                <a class="btn btn-outline-info" href="/animals/<%= animal._id %>">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+</div>
+
+<%- include("partials/footer") %>
