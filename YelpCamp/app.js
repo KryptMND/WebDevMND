@@ -16,7 +16,7 @@ mongoose.connect("mongodb://localhost/yelp_camp");
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
-
+app.use(express.static(__dirname + "/public"));
 seedDB();
 
 
@@ -69,7 +69,6 @@ app.get("/campgrounds/:id", (req, res) => {
 //======================================================
 //                  COMMENT ROUTES
 //======================================================
-
 
 // NEW _ show form to create comments
 app.get("/campgrounds/:id/comments/new", (req, res) => {
