@@ -28,7 +28,6 @@ router.post("/",isLoggedIn,(req, res) => {
         if (err){
             console.log(err);
         } else {
-            console.log(newlyCreated);
             res.redirect("/campgrounds");
         }
     })
@@ -46,6 +45,28 @@ router.get("/:id", (req, res) => {
         } else {
             // render show tamplete with that campground
             res.render("campgrounds/show", {campground: foundCampground});
+        }
+    });
+});
+
+//EDIT - show update form 
+router.get("/:id/edit", (req, res) => {
+    Campground.findById(req.params.id, (err, foundCampground) => {
+        if (err) {
+            res.redirect("/campgrounds");
+        } else {
+            res.render("campgrounds/edit", {campground: foundCampground});
+        }
+    })
+});
+//UPDATE - update/edit logic
+router.put("/:id", (req, res) => {
+    Campground.findByIdAndUpdate(req.params.id,req.body.campground, (err, editCampground) => {
+        if (err) {
+            console.log(err);
+            res.redirect("/campgrounds");
+        } else {
+            res.redirect("/campgrounds/" + req.params.id);
         }
     });
 });
