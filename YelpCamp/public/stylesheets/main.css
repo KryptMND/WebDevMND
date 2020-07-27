@@ -2,6 +2,10 @@
     width: 100%;
 }
 
+div .row .camp img {
+    height: 174px;
+}
+
 .thumbnail {
     padding: 0;
 }

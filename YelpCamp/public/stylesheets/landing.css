@@ -44,7 +44,7 @@ body {
 }
 
 .slideshow li:nth-child(2) { 
-    background-image: url(https://images.pexels.com/photos/14287/pexels-photo-14287.jpeg?auto=compress&cs=tinysrgb&h=350);
+    background-image: url(https://images.unsplash.com/photo-1595369395498-a0084400e046?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60);
     animation-delay: 10s; 
 }
 

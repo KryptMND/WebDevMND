@@ -6,6 +6,7 @@
     <title>YelpCamp</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link rel="stylesheet" href="/stylesheets/main.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
 </head>
     <body>
         <nav class="navbar navbar-default">
@@ -14,6 +15,11 @@
                     <a class="navbar-brand" href="/">YelpCamp</a>
                 </div>
                 <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="/campgrounds">
+                            <i class="fas fa-home"></i> Home</a></li>
+                    </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <% if(!currentUser) { %>
                             <li><a href="/login">Login</a></li>
