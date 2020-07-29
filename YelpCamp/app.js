@@ -15,11 +15,11 @@ const commentRoutes    = require("./routes/comments");
 const campgroundRoutes = require("./routes/campgrounds");
 const authRoutes       = require("./routes/index"); 
 
-
+const url = process.env.DATABASEURL || "mongodb://localhost/yelp_camp"
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
 mongoose.set('useFindAndModify', false);
-mongoose.connect("mongodb://localhost/yelp_camp");
+mongoose.connect(url);
 
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -52,6 +52,6 @@ app.use(authRoutes);
 app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments",commentRoutes);
 
-app.listen(3000, () => {
-    console.log("The Yelp Camp Server has Started!");
+app.listen(process.env.PORT || 3000, () => {
+console.log("The Yelp Camp Server has Started!");
 });
